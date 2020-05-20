@@ -1,0 +1,8 @@
+.App .columns {
+	width: 350px;
+	margin: 0 auto;
+}
+
+.App .column {
+	width: 100%;
+}
