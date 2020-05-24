@@ -19,4 +19,4 @@ const currencySelect = (props) => {
 	);
 };
 
-export default currencySelect;
+export default React.memo(currencySelect);
