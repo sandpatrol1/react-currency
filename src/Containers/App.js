@@ -136,43 +136,6 @@ class App extends Component {
 					<Route path="/about" component={About} />
 					<Route component={NoMatch} />
 				</Switch>
-				{/* <div className="columns" style={{paddingTop: '40px'}}>
-					<div className="column container">
-						<p>Input the amount</p>
-						<AmountInput
-							inputValue={(event) => this.inputValueHandler(event)}
-							value={this.state.inputOne}
-						/>
-					</div>
-				</div>
-
-				<div className="columns">
-					<div className="column container">
-						<p>Base currency</p>
-						<CurrencySelect
-							currencies={this.state.currencies}
-							change={this.currencyOneChangeHandler}
-							value={this.state.currencyOne}
-						/>
-					</div>
-				</div>
-
-				<div className="columns">
-					<div className="column container">
-						<p>Convert to</p>
-						<CurrencySelect
-							currencies={this.state.currencies}
-							change={this.currencyTwoChangeHandler}
-							value={this.state.currencyTwo}
-						/>
-					</div>
-				</div>
-
-				<div className="columns" style={{textAlign: 'center'}}>
-					<div className="column container">
-						<Converted converted={this.state.converted}>Converted:</Converted>
-					</div>
-				</div> */}
 
 				<Footer />
 			</div>

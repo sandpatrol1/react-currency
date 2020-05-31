@@ -8,7 +8,10 @@ const about = () => {
 				<h2 class="subtitle">
 					This app gives you <strong>easy to use</strong> currency calculations
 				</h2>
-				<p>The app has been developed using Create React App, React.js, Bulma.io by Sandpatrol</p>
+				<p>
+					The app has been developed using the following tools: Create React App, React.js, Bulma.io and
+					Frankfurter Currency API.
+				</p>
 			</div>
 		</section>
 	);
