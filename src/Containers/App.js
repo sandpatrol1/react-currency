@@ -89,7 +89,7 @@ class App extends Component {
 				<Header />
 				<Switch>
 					<Route
-						path="/"
+						path="/react-currency"
 						exact
 						render={() => (
 							<Aux>

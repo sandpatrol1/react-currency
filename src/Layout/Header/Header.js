@@ -11,7 +11,7 @@ const header = () => {
 						<div className="navbar-item">
 							<div className="buttons" style={{float: 'right'}}>
 								<NavLink
-									to="/"
+									to="/react-currency"
 									exact
 									className="button is-primary is-light"
 									activeStyle={{
