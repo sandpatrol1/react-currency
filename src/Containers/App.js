@@ -1,11 +1,16 @@
 import React, {Component} from 'react';
+import {Route, Switch, NavLink} from 'react-router-dom';
+
 import './App.css';
 import axios from '../axios-currency';
 import Header from '../Layout/Header/Header';
 import Footer from '../Layout/Footer/Footer';
+import Aux from '../hoc/Aux';
 import AmountInput from '../Components/AmountInput/AmountInput';
 import CurrencySelect from '../Components/CurrencySelect/CurrencySelect';
 import Converted from '../Components/Converted/Converted';
+import NoMatch from '../Containers/NoMatch/NoMatch';
+import About from '../Containers/About/About';
 
 class App extends Component {
 	state = {
@@ -82,8 +87,56 @@ class App extends Component {
 		return (
 			<div className="App">
 				<Header />
+				<Switch>
+					<Route
+						path="/"
+						exact
+						render={() => (
+							<Aux>
+								<div className="columns" style={{paddingTop: '40px'}}>
+									<div className="column container">
+										<p>Input the amount</p>
+										<AmountInput
+											inputValue={(event) => this.inputValueHandler(event)}
+											value={this.state.inputOne}
+										/>
+									</div>
+								</div>
 
-				<div className="columns" style={{paddingTop: '40px'}}>
+								<div className="columns">
+									<div className="column container">
+										<p>Base currency</p>
+										<CurrencySelect
+											currencies={this.state.currencies}
+											change={this.currencyOneChangeHandler}
+											value={this.state.currencyOne}
+										/>
+									</div>
+								</div>
+
+								<div className="columns">
+									<div className="column container">
+										<p>Convert to</p>
+										<CurrencySelect
+											currencies={this.state.currencies}
+											change={this.currencyTwoChangeHandler}
+											value={this.state.currencyTwo}
+										/>
+									</div>
+								</div>
+
+								<div className="columns" style={{textAlign: 'center'}}>
+									<div className="column container">
+										<Converted converted={this.state.converted}>Converted:</Converted>
+									</div>
+								</div>
+							</Aux>
+						)}
+					/>
+					<Route path="/about" component={About} />
+					<Route component={NoMatch} />
+				</Switch>
+				{/* <div className="columns" style={{paddingTop: '40px'}}>
 					<div className="column container">
 						<p>Input the amount</p>
 						<AmountInput
@@ -119,7 +172,7 @@ class App extends Component {
 					<div className="column container">
 						<Converted converted={this.state.converted}>Converted:</Converted>
 					</div>
-				</div>
+				</div> */}
 
 				<Footer />
 			</div>
