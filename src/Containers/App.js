@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Route, Switch, NavLink} from 'react-router-dom';
+import {Route, Switch, NavLink, withRouter} from 'react-router-dom';
 
 import './App.css';
 import axios from '../axios-currency';
@@ -11,6 +11,7 @@ import CurrencySelect from '../Components/CurrencySelect/CurrencySelect';
 import Converted from '../Components/Converted/Converted';
 import NoMatch from '../Containers/NoMatch/NoMatch';
 import About from '../Containers/About/About';
+import Historical from '../Containers/Historical/Historical';
 
 class App extends Component {
 	state = {
@@ -69,6 +70,10 @@ class App extends Component {
 		}));
 	};
 
+	historicalClickHandler = () => {
+		this.props.history.push('/historical/' + this.state.currencyOne + '/' + this.state.currencyTwo);
+	};
+
 	componentDidMount() {
 		this.getAllCurrenciesHandler();
 		this.getExchangeRateHandler();
@@ -84,6 +89,7 @@ class App extends Component {
 	}
 
 	render() {
+		console.log(this.props);
 		return (
 			<div className="App">
 				<Header />
@@ -130,10 +136,19 @@ class App extends Component {
 										<Converted converted={this.state.converted}>Converted:</Converted>
 									</div>
 								</div>
+
+								<div className="columns" style={{textAlign: 'center'}}>
+									<div className="column container">
+										<button className="button" onClick={this.historicalClickHandler}>
+											See Historical Data
+										</button>
+									</div>
+								</div>
 							</Aux>
 						)}
 					/>
 					<Route path="/about" component={About} />
+					<Route path="/historical/:cur1/:cur2" component={Historical} />
 					<Route component={NoMatch} />
 				</Switch>
 
@@ -143,4 +158,4 @@ class App extends Component {
 	}
 }
 
-export default App;
+export default withRouter(App);

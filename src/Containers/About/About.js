@@ -2,10 +2,10 @@ import React from 'react';
 
 const about = () => {
 	return (
-		<section class="section">
-			<div class="container">
-				<h1 class="title">About The App</h1>
-				<h2 class="subtitle">
+		<section className="section">
+			<div className="container">
+				<h1 className="title">About The App</h1>
+				<h2 className="subtitle">
 					This app gives you <strong>easy to use</strong> currency calculations
 				</h2>
 				<p>

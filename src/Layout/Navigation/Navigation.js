@@ -36,4 +36,4 @@ const navigation = () => {
 	);
 };
 
-export default navigation;
+export default React.memo(navigation);
