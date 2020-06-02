@@ -1,16 +1,25 @@
 import React, {Component} from 'react';
 import axios from '../../axios-currency';
+import HistoricalData from '../../Components/HistoricalData/HistoricalData';
 
 class Historical extends Component {
 	state = {
-		historical: {}
+		historical: []
 	};
 	componentDidMount() {
 		axios
-			.get(`/2020-01-01..?from=${this.props.match.params.cur1}&to=${this.props.match.params.cur2}`)
+			.get(`/2020-01-01..?amount=100&from=${this.props.match.params.cur1}&to=${this.props.match.params.cur2}`)
 			.then((response) => {
 				console.log(response.data);
-				this.setState({historical: response.data});
+				const historical = [];
+				for (let his in response.data.rates) {
+					historical.push({
+						date: his,
+						...response.data.rates[his]
+					});
+				}
+				console.log(historical);
+				this.setState({historical: historical});
 			})
 			.catch((error) => {
 				console.log(error);
@@ -22,10 +31,16 @@ class Historical extends Component {
 		return (
 			<div className="columns" style={{paddingTop: '40px'}}>
 				<div className="column container">
-					<h2>Historical Currency Data</h2>
-					<p>{this.props.match.params.cur1}</p>
-					<p>{this.props.match.params.cur2}</p>
+					<h2 className="title is-5">Historical Data</h2>
+					<p className="title is-6" style={{marginBottom: '20px'}}>
+						Historical rates for {this.props.match.params.cur1} to {this.props.match.params.cur2}
+					</p>
 					{this.state.historical ? <p>{this.state.historical.amount}</p> : null}
+					{this.state.historical.map((his) => {
+						return (
+							<HistoricalData key={his.date} date={his.date} rate={his[this.props.match.params.cur2]} />
+						);
+					})}
 				</div>
 			</div>
 		);
